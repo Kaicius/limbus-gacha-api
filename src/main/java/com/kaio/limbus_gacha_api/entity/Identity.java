@@ -1,6 +1,6 @@
 package com.kaio.limbus_gacha_api.entity;
 
-import com.kaio.limbus_admin_api.enums.Rarity;
+import com.kaio.limbus_gacha_api.enums.Rarity;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

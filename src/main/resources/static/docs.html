@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Limbus Gacha API · Docs</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=JetBrains+Mono:wght@400;600&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="/swagger-ui/swagger-ui.css">
+  <link rel="stylesheet" href="/swagger-limbus.css">
+</head>
+<body>
+  <header class="lb-header">
+    <div class="lb-brand">
+      <span class="lb-brand-main">LIMBUS</span>
+      <span class="lb-brand-sub">Gacha API</span>
+    </div>
+    <nav class="lb-links">
+      <a href="/v3/api-docs" target="_blank" rel="noopener">OpenAPI JSON</a>
+      <a href="/swagger-ui.html">Swagger padrão</a>
+    </nav>
+  </header>
+
+  <main id="swagger-ui"></main>
+
+  <script src="/swagger-ui/swagger-ui-bundle.js"></script>
+  <script>
+    window.ui = SwaggerUIBundle({
+      url: '/v3/api-docs',
+      dom_id: '#swagger-ui',
+      deepLinking: true,
+      docExpansion: 'list',
+      defaultModelsExpandDepth: 0,
+      displayRequestDuration: true,
+      filter: true,
+      tryItOutEnabled: true,
+      syntaxHighlight: { theme: 'monokai' }
+    });
+  </script>
+</body>
+</html>
