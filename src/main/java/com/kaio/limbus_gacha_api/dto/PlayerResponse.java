@@ -9,7 +9,8 @@ import java.util.List;
 public record PlayerResponse(
         Long id, String username, int currency,
         List<IdentityResponse> identities,
-        List<EgoResponse> egos
+        List<EgoResponse> egos,
+        List<Long> uptiedIdentityIds
 ) {
     public static PlayerResponse from(Player p) {
         return new PlayerResponse(
@@ -18,7 +19,8 @@ public record PlayerResponse(
                         .sorted(Comparator.comparing(Identity::getRarity).thenComparing(Identity::getName))
                         .map(IdentityResponse::from)
                         .toList(),
-                p.getOwnedEgos().stream().map(EgoResponse::from).toList()
+                p.getOwnedEgos().stream().map(EgoResponse::from).toList(),
+                p.getUptiedIdentities().stream().map(Identity::getId).toList()
         );
     }
 }

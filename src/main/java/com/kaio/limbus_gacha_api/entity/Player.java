@@ -38,5 +38,13 @@ public class Player {
     )
     private Set<Ego> ownedEgos = new HashSet<>();
 
+    @ManyToMany
+    @JoinTable(
+            name = "player_identity_uptie",
+            joinColumns = @JoinColumn(name = "player_id"),
+            inverseJoinColumns = @JoinColumn(name = "identity_id")
+    )
+    private Set<Identity> uptiedIdentities = new HashSet<>();
+
 
 }

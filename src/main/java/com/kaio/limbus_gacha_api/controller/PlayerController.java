@@ -30,6 +30,11 @@ public class PlayerController {
         return playerService.getPity(playerId, bannerId);
     }
 
+    @PostMapping("/{playerId}/identities/{identityId}/uptie")
+    public PlayerResponse uptie(@PathVariable Long playerId, @PathVariable Long identityId) {
+        return playerService.uptie(playerId, identityId);
+    }
+
     @PostMapping("/{id}/currency")
     public PlayerResponse addCurrency(@PathVariable Long id) {
         return playerService.addCurrency(id);
