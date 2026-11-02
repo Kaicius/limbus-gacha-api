@@ -37,4 +37,9 @@ public class Identity {
 
     @Column(length = 500)
     private String obtainmentVideoUrl;
+
+    @Column(length = 500)
+    private String quote;
+
+    private Double revealAt;
 }

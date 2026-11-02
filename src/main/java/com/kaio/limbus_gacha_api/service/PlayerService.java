@@ -3,6 +3,7 @@ package com.kaio.limbus_gacha_api.service;
 import com.kaio.limbus_gacha_api.dto.LoginRequest;
 import com.kaio.limbus_gacha_api.dto.PityResponse;
 import com.kaio.limbus_gacha_api.dto.PlayerResponse;
+import com.kaio.limbus_gacha_api.entity.Identity;
 import com.kaio.limbus_gacha_api.entity.Player;
 import com.kaio.limbus_gacha_api.entity.PlayerBanner;
 import com.kaio.limbus_gacha_api.expection.ResourceNotFoundException;
@@ -53,7 +54,7 @@ public class PlayerService {
 
         int pity = playerBannerRepository.findByPlayerIdAndBannerId(playerId, bannerId)
                 .map(PlayerBanner::getPity)
-                .orElse(0); // nunca girou nesse banner
+                .orElse(0);
 
         return new PityResponse(bannerId, pity, PITY_LIMIT - pity);
     }
@@ -61,6 +62,21 @@ public class PlayerService {
     public PlayerResponse addCurrency(Long playerId) {
         Player player = findPlayer(playerId);
         player.setCurrency(player.getCurrency() + CURRENCY_REWARD);
+        return PlayerResponse.from(playerRepository.save(player));
+    }
+
+    public PlayerResponse uptie(Long playerId, Long identityId) {
+        Player player = findPlayer(playerId);
+
+        Identity identity = player.getOwnedIdentities().stream()
+                .filter(i -> i.getId().equals(identityId))
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException("Você não tem essa identity"));
+
+        if (!player.getUptiedIdentities().add(identity)) {
+            throw new IllegalArgumentException("Essa identity já está no Uptie 3");
+        }
+
         return PlayerResponse.from(playerRepository.save(player));
     }
 
